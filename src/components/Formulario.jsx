@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import ErrorFormulario from "./ErrorFormulario"
 
 
-const Formulario = ({pacientes, setPacientes}) => {
+const Formulario = ({pacientes, setPacientes,paciente}) => {
 
     const [nombre, setNombre ] = useState('')
     const [propietario, setPropietario ] = useState('')
@@ -12,11 +12,9 @@ const Formulario = ({pacientes, setPacientes}) => {
 
     const [error, setError] = useState(false)
 
-    /* const generarId = () => {
-        const ramdon =  Mathematic.ramdon().toString(36).substr(2)
-        const fecha =  Date.now.toString(36);
-        return ramdon+ fecha;
-    } */
+    useEffect(() =>{
+        console.log(paciente);
+    },[paciente])
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -29,7 +27,6 @@ const Formulario = ({pacientes, setPacientes}) => {
         setError(false)
 
         // Objeto de Paciente
-
         const objPaciente = {
             nombre,
             propietario,
