@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import ErrorFormulario from "./ErrorFormulario"
+import Paciente from "./Paciente"
 
 
 const Formulario = ({pacientes, setPacientes,paciente}) => {
@@ -13,7 +14,15 @@ const Formulario = ({pacientes, setPacientes,paciente}) => {
     const [error, setError] = useState(false)
 
     useEffect(() =>{
-        console.log(paciente);
+        if ( Object.keys(paciente).length>0) {
+            setNombre(paciente.nombre)
+            setPropietario(paciente.propietario)
+            setEmail(paciente.email)
+            setFecha(paciente.fecha)
+            setSintomas(paciente.sintomas)
+        }
+
+        /* console.log(paciente); */
     },[paciente])
 
     const handleSubmit = (e) =>{
@@ -124,7 +133,7 @@ const Formulario = ({pacientes, setPacientes,paciente}) => {
                 <input
                     className="bg-indigo-600 w-full p-3 text-white rounded uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
                     type="submit"
-                    value="Agregar paciente"
+                    value={paciente.id ? "Editar Paciente": "Agregar paciente"}
                 />
 
             </form>
