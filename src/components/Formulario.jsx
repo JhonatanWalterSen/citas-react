@@ -3,7 +3,7 @@ import ErrorFormulario from "./ErrorFormulario"
 import Paciente from "./Paciente"
 
 
-const Formulario = ({pacientes, setPacientes,paciente}) => {
+const Formulario = ({pacientes, setPacientes,paciente, setPaciente}) => {
 
     const [nombre, setNombre ] = useState('')
     const [propietario, setPropietario ] = useState('')
@@ -42,10 +42,20 @@ const Formulario = ({pacientes, setPacientes,paciente}) => {
             email,
             fecha,
             sintomas,
-            id: self.crypto.randomUUID()
         }
 
-        setPacientes([...pacientes, objPaciente])
+        if (paciente.id) {
+            console.log('Editado');
+            objPaciente.id = paciente.id;
+            const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objPaciente : pacienteState)
+            setPacientes(pacientesActualizados)
+            setPaciente({})
+        } else{
+            //Nuevo registro
+            objPaciente.id = self.crypto.randomUUID()
+            setPacientes([...pacientes, objPaciente])
+        }
+
 
         //Reiniciar form
         setNombre('')
