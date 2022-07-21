@@ -1,13 +1,29 @@
 import React from 'react'
+import Swal from 'sweetalert2'
+
 
 const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
     const {nombre,propietario,email,fecha,sintomas,id} = paciente;
 
     const handleEliminar = () =>{
-        const respuesta = confirm('¿Deseas Eliminar este paciente?')
+
+        Swal.fire({
+            title: 'Advertencia',
+            text: '¿Estás seguro de eliminar al paciente?',
+            icon: 'error',
+            showDenyButton: true,
+            denyButtonText: 'No',
+            confirmButtonText: 'Eliminar'
+        }).then(response=>{
+            if(response.isConfirmed){
+                eliminarPaciente(id)
+                Swal.fire('Éxito','El registro se Eliminó correctamente')
+            }
+        })
+        /* const respuesta = confirm('¿Deseas Eliminar este paciente?')
         if (respuesta) {
             eliminarPaciente(id)
-        }
+        } */
     }
 
     return (
