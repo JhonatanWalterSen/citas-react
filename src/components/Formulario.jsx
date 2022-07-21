@@ -67,16 +67,14 @@ const Formulario = ({pacientes, setPacientes,paciente, setPaciente}) => {
 
     return (
         <div className="md:w-1/2 lg:w-2/5">
-            <h2 className="font-black text-3xl text-center">Seguimiento de Pacientes</h2>
-            <p className="text-lg mt-5 text-center mb-10">Añade Pacientes y {''}
-                <span className="text-indigo-600 font-bold">Administralos</span>
+            <h2 className="font-black md:text-3xl text-2xl text-center text-gray-400">Registra</h2>
+            <p className="text-lg mt-5 text-center mb-10 text-white">Una cita para tu {''}
+                <span className="text-sky-600 font-bold">Mascota</span>
             </p>
 
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded py-10 px-5 mb-10 mx-5">
 
-                {error &&
-                <ErrorFormulario>Campos obligatorios</ErrorFormulario>
-                }
+                { error && <ErrorFormulario>Campos obligatorios</ErrorFormulario> }
 
                 <div className="mb-5">
                     <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold">Nombre Mascota</label>
@@ -133,7 +131,7 @@ const Formulario = ({pacientes, setPacientes,paciente, setPaciente}) => {
                         name=""
                         id="sintomas"
                         cols="30"
-                        rows="10"
+                        rows="4"
                         value={sintomas}
                         onChange={ (e) => setSintomas(e.target.value) }
                         >
